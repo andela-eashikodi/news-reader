@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app="RSSFeedApp">
+<head>
+	<title>NEWS - READER</title>
+	<script type="text/javascript" src="js/angular.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/materialize.css">
+	<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+</head>
+<body ng-controller="FeedCtrl">
+
+	<header class="card-panel teal lighten-2">
+		<h4><i class="mdi-action-description left"></i><span class="black-text text-darken-2">NEWS </span><span class="green-text text-darken-2" >READER</span></h4>
+	</header>
+	<div class="row" id="mainDiv">
+      <div class="col s3">
+        <form class="col s12">
+          <input type="text" placeholder="Enter URL to view feeds"  class="black-text text-darken-2">
+          <input ng-click="feedSrc='http://feeds.huffingtonpost.com/huffingtonpost/raw_feed';loadFeed($event)" type="submit" value="Search" id="submitButton" class="btn">
+        	<ul class="collapsible" data-collapsible="accordion">
+    			<li>
+      				<div class="collapsible-header">All</div>
+      				<div class="collapsible-body"><p><b>list of all feed</b></p></div>
+    			</li>
+    			<li>
+      			<div class="collapsible-header">Saved</div>
+      			<div class="collapsible-body"><p><b>list of all saved feed</b></p></div>
+    			</li>
+    			<li>
+      			<div class="collapsible-header active">Category</div>
+      			<div class="collapsible-body">
+      				<div class="collapsible-header"><b>NEWS</b></div>
+      				<div><p>VanguardNG</p></div>
+      				<div class="divider"></div>
+      				<div class="collapsible-header"><b>SPORT</b></div>
+      				<div><p>Goal.com</p></div>
+      			</div>
+      		</li>
+    		</ul>
+        </form>
+      </div>
+      <div class="col s9">
+      	<div class="card-panel teal"><span class="white-text text-darken-2">Today's Headlines....{{feeds.title}}</span></div>
+      		{{loadButonText}}{{2+5}}{{test}}{{feeds}}
+      </div>
+  </div>
+      
+    
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>
