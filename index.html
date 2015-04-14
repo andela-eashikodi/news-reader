@@ -2,9 +2,10 @@
 <html ng-app="RSSFeedApp">
 <head>
 	<title>NEWS - READER</title>
-	<script type="text/javascript" src="js/angular.min.js"></script>
+	
 	<link rel="stylesheet" type="text/css" href="css/materialize.css">
 	<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+  <script type="text/javascript" src="js/angular.min.js"></script>
 </head>
 <body ng-controller="FeedCtrl">
 
@@ -15,7 +16,7 @@
     <div class="col s3">
       <form class="col s12">
      <!--    <input type="text" placeholder="Enter URL to view feeds"  class="black-text text-darken-2"> -->
-        <input type="text" id ="searchbox" placeholder = "Enter URL to view feed" ng-model="site"/>
+        <input type="text" name="urlbox" id ="searchbox" placeholder = "Enter URL to view feed" ng-model="site" required/>
         <input ng-click="loadFeed($event)" type="submit" value="Read" id="submitButton" class="btn">
       	<ul class="collapsible" data-collapsible="accordion">
   			<li>
@@ -49,7 +50,7 @@
       </form>
     </div>
     <div class="col s9">
-    	<div class="card-panel teal"><span class="white-text text-darken-2">Today's Headlines....</span></div>
+    	<div class="card-panel teal"><span class="white-text text-darken-2">Today's Headlines....{{currentUrl}}</span></div>
       <div class="progress" ng-show="loading">
         <div class="indeterminate"></div>
       </div>
