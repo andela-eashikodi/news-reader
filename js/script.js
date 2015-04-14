@@ -3,8 +3,7 @@ var App = angular.module('RSSFeedApp', []);
 App.controller("FeedCtrl", ['$scope','FeedService', function ($scope,Feed) {  
   $scope.site = 'http://';
   $scope.saved = [
-      {title: "first"},
-      {title: "second"}
+      
     ];
     $scope.loadFeed=function(e){
     $scope.loading = true; 
@@ -28,8 +27,13 @@ App.controller("FeedCtrl", ['$scope','FeedService', function ($scope,Feed) {
     }
     };
 
-    $scope.arr = function(){
-      $scope.saved.push({title:$scope.title});
+    $scope.arr = function(feed){
+      for(var key in $scope.saved){
+        if($scope.saved[key].title===feed.title){
+          return;
+        }
+      }
+      $scope.saved.push({title:feed.title, link: feed.link});
     };
 
 }]);
