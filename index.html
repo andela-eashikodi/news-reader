@@ -15,7 +15,7 @@
     <div class="col s3">
       <form class="col s12">
      <!--    <input type="text" placeholder="Enter URL to view feeds"  class="black-text text-darken-2"> -->
-        <input type="text" id ="searchbox" ng-model="site"/>
+        <input type="text" id ="searchbox" placeholder = "Enter URL to view feed" ng-model="site"/>
         <input ng-click="loadFeed($event)" type="submit" value="Read" id="submitButton" class="btn">
       	<ul class="collapsible" data-collapsible="accordion">
   			<li>
@@ -34,7 +34,7 @@
             <div class="collection-item" ng-click="site='http://vanguardngr.com/feed';loadFeed($event)"><a href="#">VanguardNG</a></div>
     				<div class="collection-item" ng-click="site='http://rss.cnn.com/rss/cnn_topstories.rss';loadFeed($event)"><a href="#">CNN</a></div>
     				<div class="collection-item"><b>GOSSIP</b></div>
-    				<div class="collection-item" ng-click="site='http://lindaikeji.blogspot.com/feeds/posts';loadFeed($event)"><a href="#">LindaIkeji</a></div>
+    				<div class="collection-item" ng-click="site='http://www.gistus.com/feed';loadFeed($event)"><a href="#">LindaIkeji</a></div>
     			</div>
     			</div>
     		</li>
@@ -43,10 +43,11 @@
     </div>
     <div class="col s9">
     	<div class="card-panel teal"><span class="white-text text-darken-2">Today's Headlines....</span></div>
-      <div class="progress">
+      <div class="progress" ng-show="feeds.length < 0">
         <div class="indeterminate"></div>
       </div>
-    		<div ng-repeat = "feed in feeds" class="col s12">
+      <div class="col s3"><input type="search" placeholder="Search" ng-show ="feeds.length > 0" ng-model ="find" /></div>
+    		<div ng-repeat = "feed in feeds | filter:find" class="col s12">
     			<div class="collection"><a href="{{feed.link}}">{{feed.title}}</a></div>
     			<p>{{feed.contentSnippet}}</p>
     			<p class="grey-text text-darken-2">{{feed.publishedDate}}</p>
