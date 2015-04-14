@@ -1,21 +1,27 @@
 var App = angular.module('RSSFeedApp', []);
 
 App.controller("FeedCtrl", ['$scope','FeedService', function ($scope,Feed) {  
-  $scope.site = '';
-    $scope.loadFeed=function(e){ 
+  $scope.site = 'http://';
+    $scope.loadFeed=function(e){
+    $scope.loading = true; 
     if($scope.site.substring(0,4)!=="http"){
       console.log($scope.site.substring(0,4));
       $scope.site = 'http://'+$scope.site;
     }
 
       Feed.parseFeed($scope.site+"/feed").then(function(res){
-        $scope.searchbox=angular.element(e.target).text();
+        
+        $scope.site = '';
         $scope.feeds=res.data.responseData.feed.entries;
+        if($scope.feeds!==undefined){
+          $scope.loading = false;
+        }
+        else if($scope.feeds===undefined){
+          alert("Couldn't locate feed for "+ $scope.site);
+        }
       });
-    };
 
-    $scope.chkfeed = function(){
-
+      
     };
 }]);
 

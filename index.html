@@ -43,7 +43,7 @@
     </div>
     <div class="col s9">
     	<div class="card-panel teal"><span class="white-text text-darken-2">Today's Headlines....</span></div>
-      <div class="progress" ng-show="feeds.length < 0">
+      <div class="progress" ng-show="loading">
         <div class="indeterminate"></div>
       </div>
       <div class="col s3"><input type="search" placeholder="Search" ng-show ="feeds.length > 0" ng-model ="find" /></div>
