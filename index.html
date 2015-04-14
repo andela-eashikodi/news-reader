@@ -12,42 +12,42 @@
 		<h4><i class="mdi-action-description left"></i><span class="black-text text-darken-2">NEWS </span><span class="green-text text-darken-2" >READER</span></h4>
 	</header>
 	<div class="row" id="mainDiv">
-      <div class="col s3">
-        <form class="col s12">
-       <!--    <input type="text" placeholder="Enter URL to view feeds"  class="black-text text-darken-2"> -->
-          <input type="text" value="http://"  ng-model="dd" class="black-text text-darken-2"/>
-          <input ng-click="feedSrc='http://rss.cnn.com/rss/cnn_topstories.rss';loadFeed($event)" type="submit" value="Search" id="submitButton" class="btn">
-        	<ul class="collapsible" data-collapsible="accordion">
-    			<li>
-      				<div class="collapsible-header">All</div>
-      				<div class="collapsible-body"><p><b>list of all feed</b></p></div>
-    			</li>
-    			<li>
-      			<div class="collapsible-header">Saved</div>
-      			<div class="collapsible-body"><p><b>list of all saved feed</b></p></div>
-    			</li>
-    			<li>
-      			<div class="collapsible-header active">Category</div>
-      			<div class="collapsible-body">
-      				<div class="collapsible-header"><b>NEWS</b></div>
-      				<div><p>VanguardNG</p></div>
-      				<div class="divider"></div>
-      				<div class="collapsible-header"><b>SPORT</b></div>
-      				<div><p>Goal.com</p></div>
-      			</div>
-      		</li>
-    		</ul>
-        </form>
-      </div>
-      <div class="col s9">
-      	<div class="card-panel teal"><span class="white-text text-darken-2">Today's Headlines</span></div>
-      		
-      		<div ng-repeat = "feed in feeds" class="col s12">
-      		
-      			<div class="collection"><a href="{{feed.link}}">{{feed.title}}</a></div>
-      			<p>{{feed.contentSnippet}}</p>
-      			<p class="grey-text text-darken-2">{{feed.publishedDate}}</p>
-      		</div>
+    <div class="col s3">
+      <form class="col s12">
+     <!--    <input type="text" placeholder="Enter URL to view feeds"  class="black-text text-darken-2"> -->
+        <input type="text" id ="searchbox" autocomplete="off" ng-model="dd"/>
+        <input ng-click="loadFeed($event)" type="submit" value="Search" id="submitButton" class="btn">
+      	<ul class="collapsible" data-collapsible="accordion">
+  			<li>
+    				<div class="collapsible-header">All</div>
+    				<div class="collapsible-body"><p><b>list of all feed</b></p></div>
+  			</li>
+  			<li>
+    			<div class="collapsible-header">Saved</div>
+    			<div class="collapsible-body"><p><b>list of all saved feed</b></p></div>
+  			</li>
+  			<li>
+    			<div class="collapsible-header active">Category</div>
+    			<div class="collapsible-body">
+    			<div class="collection">
+    				<div class="collection-item"><b>NEWS</b></div>
+    				<div class="collection-item"><a href="#">VanguardNG</a></div>
+    				<!-- <div class="divider"></div> -->
+    				<div class="collection-item"><b>SPORT</b></div>
+    				<div class="collection-item"><a href="#">Goal.com</a></div>
+    			</div>
+    			</div>
+    		</li>
+  		</ul>
+      </form>
+    </div>
+    <div class="col s9">
+    	<div class="card-panel teal"><span class="white-text text-darken-2">Today's Headlines</span></div>
+    		<div ng-repeat = "feed in feeds" class="col s12">
+    			<div class="collection"><a href="{{feed.link}}">{{feed.title}}</a></div>
+    			<p>{{feed.contentSnippet}}</p>
+    			<p class="grey-text text-darken-2">{{feed.publishedDate}}</p>
+    		</div>
       </div>
   </div>
       
@@ -56,4 +56,4 @@
 <script type="text/javascript" src="js/materialize.min.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
 </body>
-</html>
+</html
