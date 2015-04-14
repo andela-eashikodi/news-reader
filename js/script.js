@@ -1,9 +1,10 @@
 var App = angular.module('RSSFeedApp', []);
 
 App.controller("FeedCtrl", ['$scope','FeedService', function ($scope,Feed) {  
-    $scope.test = "Testing"  
+
     $scope.loadButonText="Load";
-    $scope.loadFeed=function(e){        
+    $scope.loadFeed=function(e){   
+    console.log($scope.feedSrc)     
         Feed.parseFeed($scope.feedSrc).then(function(res){
             $scope.loadButonText=angular.element(e.target).text();
             $scope.feeds=res.data.responseData.feed.entries;
