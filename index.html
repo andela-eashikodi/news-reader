@@ -24,8 +24,15 @@
   			</li>
   			<li>
     			<div class="collapsible-header">Saved</div>
-    			<div class="collapsible-body"><p><b>list of all saved feed</b></p></div>
-  			</li>
+    			<div class="collapsible-body">
+            <div class="collection">
+            <div class="collection-item"><b>List Of Saved Feeds</b></div>
+            <div class="collection-item" ng-repeat = "item in saved">
+              <div><a href="#">{{item.title}}</a></div>
+            </div>
+            </div>
+          </div>
+        </li>
   			<li>
     			<div class="collapsible-header active">Category</div>
     			<div class="collapsible-body">
@@ -46,9 +53,10 @@
       <div class="progress" ng-show="loading">
         <div class="indeterminate"></div>
       </div>
-      <div class="col s3"><input type="search" placeholder="Search" ng-show ="feeds.length > 0" ng-model ="find" /></div>
+      <div class="card-panel red" ng-show="err"><span class="white-text text-darken-2"> Could not locate feed for {{site}}</span></div>
+      <div class="col s3"><input class="browser-default" type="search"  placeholder="Search" ng-show ="feeds.length > 0" ng-model ="find" /></div>
     		<div ng-repeat = "feed in feeds | filter:find" class="col s12">
-    			<div class="collection"><a href="{{feed.link}}">{{feed.title}}</a></div>
+    			<div class="collection"><a href="{{feed.link}}">{{feed.title}}</a><span>     </span><i ng-click = "arr()" class= "mdi-action-bookmark" ng-click = ""></i></div>
     			<p>{{feed.contentSnippet}}</p>
     			<p class="grey-text text-darken-2">{{feed.publishedDate}}</p>
     		</div>
