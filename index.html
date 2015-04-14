@@ -16,7 +16,7 @@
     <div class="col s3">
       <form class="col s12">
      <!--    <input type="text" placeholder="Enter URL to view feeds"  class="black-text text-darken-2"> -->
-        <input type="text" name="urlbox" id ="searchbox" placeholder = "Enter URL to view feed" ng-model="site" required/>
+        <input type="text" id ="searchbox" placeholder = "Enter URL to view feed" ng-model="site" required/>
         <input ng-click="loadFeed($event)" type="submit" value="Read" id="submitButton" class="btn">
       	<ul class="collapsible" data-collapsible="accordion">
   			<li>
@@ -59,7 +59,7 @@
     		<div ng-repeat = "feed in feeds | filter:find" class="col s12">
     			<div class="collection"><a href="{{feed.link}}" target="_blank">{{feed.title}}</a><span>     </span><a href="#"><i ng-click = "arr(feed)" class= "mdi-action-bookmark"></i></a></div>
     			<p>{{feed.contentSnippet}}</p>
-    			<p class="grey-text text-darken-2">{{feed.publishedDate}}</p>
+    			<p class="grey-text text-darken-2">{{feed.publishedDate| date : "s"}}</p>
     		</div>
       </div>
   </div>
