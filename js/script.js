@@ -4,7 +4,7 @@ App.controller("FeedCtrl", ['$scope','FeedService', function ($scope,Feed) {
 
     $scope.loadButonText="Load";
     $scope.loadFeed=function(e){   
-    console.log($scope.feedSrc)     
+    console.log($scope.feedSrc)    
         Feed.parseFeed($scope.feedSrc).then(function(res){
             $scope.loadButonText=angular.element(e.target).text();
             $scope.feeds=res.data.responseData.feed.entries;

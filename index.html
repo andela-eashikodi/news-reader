@@ -15,8 +15,8 @@
       <div class="col s3">
         <form class="col s12">
        <!--    <input type="text" placeholder="Enter URL to view feeds"  class="black-text text-darken-2"> -->
-          <input type="text" value=""  ng-model="dd" class="black-text text-darken-2"/>
-          <input ng-click="feedSrc='http://';loadFeed($event)" type="submit" value="Search" id="submitButton" class="btn">
+          <input type="text" value="http://"  ng-model="dd" class="black-text text-darken-2"/>
+          <input ng-click="feedSrc='http://rss.cnn.com/rss/cnn_topstories.rss';loadFeed($event)" type="submit" value="Search" id="submitButton" class="btn">
         	<ul class="collapsible" data-collapsible="accordion">
     			<li>
       				<div class="collapsible-header">All</div>
@@ -41,7 +41,13 @@
       </div>
       <div class="col s9">
       	<div class="card-panel teal"><span class="white-text text-darken-2">Today's Headlines</span></div>
-      		{{loadButonText}}{{2+5}}{{test}}{{feeds}}
+      		
+      		<div ng-repeat = "feed in feeds" class="col s12">
+      		
+      			<div class="collection"><a href="{{feed.link}}">{{feed.title}}</a></div>
+      			<p>{{feed.contentSnippet}}</p>
+      			<p class="grey-text text-darken-2">{{feed.publishedDate}}</p>
+      		</div>
       </div>
   </div>
       
