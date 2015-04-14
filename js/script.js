@@ -17,12 +17,15 @@ App.controller("FeedCtrl", ['$scope','FeedService', function ($scope,Feed) {
     if($scope.feeds!==undefined){
       $scope.loading = false;
       // $scope.site = '';
-      $scope.err = "false";
+      $scope.err = false;
+    }
+    else {
+      $scope.err = true;
     }
     });
 
     if($scope.feeds===undefined){
-      $scope.loading = "false";
+      $scope.loading = true;
       $scope.err = true;
     }
     };
