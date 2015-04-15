@@ -63,12 +63,12 @@
       <div class="progress" ng-show="loading">
         <div class="indeterminate"></div>
       </div>
-      <div class="card-panel red" ng-show="err"><span class="white-text text-darken-2"> Could not locate feed</span></div>
+      <div class="card-panel white" ng-show="err"><span class="black-text text-darken-2"> Could not locate feed</span></div>
       <div class="col s3"><input class="browser-default" type="search"  placeholder="Search" ng-show ="feeds.length > 0" ng-model ="find" /></div>
     		<div ng-repeat = "feed in feeds | filter:find" class="col s12">
     			<div class="collection"><a href="{{feed.link}}" target="_blank">{{feed.title}}</a><span>     </span><a href="#"><i ng-click = "arr(feed)" class= "mdi-action-bookmark"></i></a></div>
     			<p>{{feed.contentSnippet}}</p>
-    			<p class="grey-text text-darken-2">{{feed.publishedDate| date : "s"}}</p>
+    			<p class="grey-text text-darken-2">{{feed.publishedDate}}</p>
     		</div>
       </div>
   </div>

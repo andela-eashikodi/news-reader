@@ -1,8 +1,9 @@
+'use strict';
+
 var App = angular.module('RSSFeedApp', []);
 
-$(document).ready(function(){
-    Feed.parseFeed("http:vanguardngr.com/feed").then(function(res){
-    $scope.feeds=res.data.responseData.feed.entries;});
+$(document).ready(function(event){
+    // console.log(event);
 });
 
 App.controller("FeedCtrl", ['$scope','FeedService', function ($scope,Feed) {  
@@ -24,6 +25,7 @@ App.controller("FeedCtrl", ['$scope','FeedService', function ($scope,Feed) {
     $scope.currentUrl = $scope.site.substr(7,$scope.site.length);
 
     Feed.parseFeed($scope.site+"/feed").then(function(res){
+    // console.log(res);
     $scope.feeds=res.data.responseData.feed.entries;
     $scope.loading = false;
     $scope.site = '';
@@ -60,8 +62,10 @@ App.controller("FeedCtrl", ['$scope','FeedService', function ($scope,Feed) {
 App.factory('FeedService',['$http',function($http){
   return {
     parseFeed : function(url){
-      console.log(url);
-      console.log(encodeURIComponent(url));
+      // console.log(url);
+      // console.log(encodeURIComponent(url));
+      console.log($http.jsonp('//ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=50&callback=JSON_CALLBACK&q=' + encodeURIComponent(url)));
+
       return $http.jsonp('//ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=50&callback=JSON_CALLBACK&q=' + encodeURIComponent(url));
     }
   };
