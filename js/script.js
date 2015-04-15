@@ -2,10 +2,6 @@
 
 var App = angular.module('RSSFeedApp', []);
 
-// $(document).ready(function(){
-//     $('#page').show();
-// });
-
 App.controller("FeedCtrl", ['$scope','FeedService', function ($scope,Feed) {  
   $scope.site = '';
   $scope.currentUrl='';
@@ -51,7 +47,6 @@ App.controller("FeedCtrl", ['$scope','FeedService', function ($scope,Feed) {
   };
 
   $scope.news = function(itemadd){
-    // console.log(itemadd);
     for(var key in $scope.allfeed){
       if($scope.allfeed[key].name===itemadd){
         return;
