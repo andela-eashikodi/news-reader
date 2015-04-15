@@ -3,13 +3,14 @@ var App = angular.module('RSSFeedApp', []);
 App.controller("FeedCtrl", ['$scope','FeedService', function ($scope,Feed) {  
   $scope.site = '';
   $scope.currentUrl='';
-  $scope.saved = [
-      
+  $scope.saved = [];
+  $scope.allfeed = [
+    // {name:"punchng.com",link:"http://punchng.com/feed"}
   ];
-    
+
   $scope.loadFeed=function(e){
     $scope.currentUrl = $scope.site;
-    console.log($scope.currentUrl);
+    console.log($scope.site);
     $scope.loading = true; 
     $scope.err = false;
     if($scope.site.substring(0,4)!=="http"){
@@ -38,6 +39,17 @@ App.controller("FeedCtrl", ['$scope','FeedService', function ($scope,Feed) {
     }
     $scope.saved.push({title:feed.title, link: feed.link});
   };
+
+  $scope.news = function(itemadd){
+    // console.log(itemadd);
+    for(var key in $scope.allfeed){
+      if($scope.allfeed[key].name===itemadd){
+        return;
+      }
+    }
+    $scope.allfeed.push({name:itemadd, link: "http://"+itemadd+".com/feed"});
+  };
+
 }]);
 
 App.factory('FeedService',['$http',function($http){

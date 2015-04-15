@@ -16,12 +16,21 @@
     <div class="col s3">
       <form class="col s12">
      <!--    <input type="text" placeholder="Enter URL to view feeds"  class="black-text text-darken-2"> -->
-        <input type="text" id ="searchbox" placeholder = "Enter URL to view feed" ng-model="site" required/>
+        <input type="text" id ="searchbox" placeholder = "Enter URL to view feed" ng-model="site"/>
         <input ng-click="loadFeed($event)" type="submit" value="Read" id="submitButton" class="btn">
       	<ul class="collapsible" data-collapsible="accordion">
   			<li>
     				<div class="collapsible-header">All</div>
-    				<div class="collapsible-body"><p><b>list of all feed</b></p></div>
+    				<div class="collapsible-body">
+            <!-- <p><b>list of all feed</b></p> -->
+              <div class = "collection">
+                <div class="collection-item"><input ng-model="infeed" name =  "addval" type="text" class="col s6 right" /><button class="btn" value="add" ng-click="news(infeed)">add</button></div>
+                <div class = "collection-item" ng-click="site='http://punchng.com/feed';loadFeed($event)"><a href="#">punchng.com</a></div>
+                <div class="collection-item" ng-repeat="item in allfeed" >
+                  <div ng-click="site='{{item.link}}';loadFeed($event)"><a href="#">{{item.name}}</a></div>
+                </div>
+              </div>
+            </div>
   			</li>
   			<li>
     			<div class="collapsible-header">Saved</div>
