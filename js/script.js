@@ -2,9 +2,9 @@
 
 var App = angular.module('RSSFeedApp', []);
 
-$(document).ready(function(event){
-    // console.log(event);
-});
+// $(document).ready(function(){
+//     $('#page').show();
+// });
 
 App.controller("FeedCtrl", ['$scope','FeedService', function ($scope,Feed) {  
   $scope.site = '';
@@ -25,8 +25,11 @@ App.controller("FeedCtrl", ['$scope','FeedService', function ($scope,Feed) {
     $scope.currentUrl = $scope.site.substr(7,$scope.site.length);
 
     Feed.parseFeed($scope.site+"/feed").then(function(res){
-    // console.log(res);
+    if(res.data.responseData===null){
+      $scope.err = true;
+    }
     $scope.feeds=res.data.responseData.feed.entries;
+    $scope.pageload = true;
     $scope.loading = false;
     $scope.site = '';
     $scope.err = false;
@@ -54,6 +57,7 @@ App.controller("FeedCtrl", ['$scope','FeedService', function ($scope,Feed) {
         return;
       }
     }
+    $('#alldiv').prepend("<div class = 'collection-item' ng-click='site='http://punchng.com/feed';loadFeed($event)><a href='http://"+itemadd+"' target='_blank'>"+itemadd+"</a></div>");
     $scope.allfeed.push({name:itemadd, link: "http://"+itemadd+".com/feed"});
   };
 
@@ -62,10 +66,6 @@ App.controller("FeedCtrl", ['$scope','FeedService', function ($scope,Feed) {
 App.factory('FeedService',['$http',function($http){
   return {
     parseFeed : function(url){
-      // console.log(url);
-      // console.log(encodeURIComponent(url));
-      console.log($http.jsonp('//ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=50&callback=JSON_CALLBACK&q=' + encodeURIComponent(url)));
-
       return $http.jsonp('//ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=50&callback=JSON_CALLBACK&q=' + encodeURIComponent(url));
     }
   };
