@@ -6,37 +6,43 @@ describe('my app', function() {
 
   browser.get('index.html');
 
-  it('should automatically redirect to /view1 when location hash/fragment is empty', function() {
-    expect(browser.getLocationAbsUrl()).toMatch("/view1");
+  it('should not redirect elsewhere when intially loaded', function() {
+    expect(browser.getLocationAbsUrl()).toBe('http://localhost:8000/index.html');
   });
 
-
-  describe('view1', function() {
+  describe('header', function() {
 
     beforeEach(function() {
-      browser.get('index.html#/view1');
+      browser.get('index.html');
     });
 
-
-    it('should render view1 when user navigates to /view1', function() {
-      expect(element.all(by.css('[ng-view] p')).first().getText()).
-        toMatch(/partial for view 1/);
+    it('should render actual header title', function() {
+      expect(element.all(by.tagName('header')).getText()).
+        toMatch('NEWS');
     });
-
   });
 
-
-  describe('view2', function() {
+  describe('feedsite headline', function() {
 
     beforeEach(function() {
-      browser.get('index.html#/view2');
+      browser.get('index.html');
     });
 
+    it('should display name of current feed site', function() {
+      var search = element(by.model('site'));
+      var buttn = element.all(by.id('submitButton'));
+      var feedname = element.all(by.id('headline'));
 
-    it('should render view2 when user navigates to /view2', function() {
-      expect(element.all(by.css('[ng-view] p')).first().getText()).
-        toMatch(/partial for view 2/);
+      search.sendKeys('vanguardngr.com');
+      buttn.click().then(function(res){
+        expect(feedname.getText()).toMatch('vanguard');
+      });
+
+      var sort = element(by.model('find'));
+      var feedList = element.all(by.repeater('feed in feeds'));
+
+      sort.sendKeys('gdgdgdhhshhsgshjd');
+      expect(feedList.count()).toBe(0);
     });
-
   });
 });
