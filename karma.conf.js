@@ -1,14 +1,14 @@
 module.exports = function(config){
   config.set({
 
-    basePath : 'RSSFEED/',
+    basePath : '',
 
     files : [
       'app/bower_components/angular/angular.js',
-      'app/bower_components/angular-route/angular-route.js',
-      'app/bower_components/angular-mocks/angular-mocks.js',
+      // 'app/bower_components/angular-route/angular-route.js',
+      // 'app/bower_components/angular-mocks/angular-mocks.js',
       // 'app/components/**/*.js',
-      // 'js/script.js',
+      'js/script.js',
       'app/view1/**/*.js'
     ],
 
