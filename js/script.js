@@ -5,11 +5,9 @@ var App = angular.module('RSSFeedApp', []);
 App.controller("FeedCtrl", ['$scope','FeedService', function ($scope,Feed) {  
   $scope.site = '';
   $scope.currentUrl='';
-  $scope.saved = [];
-  // $scope.saved = JSON.parse(localStorage.getItem("savedpost"));
-  $scope.allfeed = [
-    // {name:"punchng.com",link:"http://punchng.com/feed"}
-  ];
+  (localStorage.getItem('savedpost')) ? $scope.saved = angular.fromJson(localStorage.getItem('savedpost')) : $scope.saved = [];
+  (localStorage.getItem('allsite')) ? $scope.allfeed = angular.fromJson(localStorage.getItem('allsite')) : $scope.allfeed = [];
+  // $scope.allfeed = [];
 
   $scope.loadFeed=function(e){
     $scope.currentUrl = $scope.site;
@@ -44,8 +42,9 @@ App.controller("FeedCtrl", ['$scope','FeedService', function ($scope,Feed) {
         return;
       }
     }
-    $scope.saved.push({title:feed.title, link: feed.link});
-    // localStorage.setItem("savedpost", $scope.saved);
+    $scope.saved.unshift({title:feed.title, link: feed.link});
+    localStorage.setItem('savedpost', angular.toJson($scope.saved));
+
   };
 
   $scope.news = function(itemadd){
@@ -54,9 +53,19 @@ App.controller("FeedCtrl", ['$scope','FeedService', function ($scope,Feed) {
         return;
       }
     }
-    $('#alldiv').prepend("<div class = 'collection-item' ng-click='site='http://punchng.com/feed';loadFeed($event)><a href='http://"+itemadd+"' target='_blank'>"+itemadd+"</a></div>");
-    $scope.allfeed.push({name:itemadd, link:itemadd});
+    $scope.allfeed.unshift({name:itemadd, link:'http://'+itemadd});
     $scope.infeed = '';
+    localStorage.setItem('allsite', angular.toJson($scope.allfeed));
+  };
+
+  $scope.removeall = function(){
+    localStorage.removeItem('allsite');
+    $scope.allfeed = [];
+  };
+
+  $scope.removesave = function(){
+    localStorage.removeItem('savedpost');
+    $scope.saved = [];
   };
 
 }]);

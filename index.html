@@ -22,15 +22,15 @@
   			<li>
     				<div class="collapsible-header">All</div>
     				<div class="collapsible-body">
-            <!-- <p><b>list of all feed</b></p> -->
               <div class = "collection">
+              <div class="collection-item"><b>List Of All Saved site</b></div>
                 <div class="collection-item"><input ng-model="infeed" name =  "addval" type="text" class="col s6 right" /><button class="btn" value="add" ng-click="news(infeed)">add</button></div>
-                <div id="alldiv">
-                <div class = "collection-item" ng-click="site='http://punchng.com/feed';loadFeed($event)"><a href="#">punchng.com</a></div>
+                <div class="collection-item" id="alldiv">
+                  <div class="collection-item" ng-click="removeall()"><a href=''>Clear List</a></div>
                 </div>
-                <!-- <div class="collection-item" ng-repeat="item in allfeed" >
-                  <div ng-click="site='{{item.link}}';loadFeed($event)"><a href="#">{{item.name}}</a></div>
-                </div> -->
+                <div class="collection-item" ng-repeat="item in allfeed" >
+                  <div><a href="{{item.link}}" target ='_blank'>{{item.name}}</a></div>
+                </div>
               </div>
             </div>
   			</li>
@@ -39,6 +39,7 @@
     			<div class="collapsible-body">
             <div class="collection">
             <div class="collection-item"><b>List Of Saved Feeds</b></div>
+            <div class="collection-item" ng-click="removesave()"><a href = ''>Clear List</a></div>
             <div class="collection-item" ng-repeat = "item in saved">
               <div><a href="{{item.link}}" target ='_blank'>{{item.title}}</a></div>
             </div>
@@ -85,7 +86,7 @@
         </div>
       </div>
       <div ng-repeat = "feed in feeds | filter:find" class="col s12">
-    		<div class="collection"><a href="{{feed.link}}" target="_blank">{{feed.title}}</a><span>     </span><a href="#"><i ng-click = "arr(feed)" class= "mdi-action-bookmark"></i></a></div>
+    		<div class="collection"><a href="{{feed.link}}" target="_blank">{{feed.title}}</a><span>     </span><a href='' onclick="Materialize.toast('Saved!', 500)"><i ng-click = "arr(feed)" class= "mdi-action-bookmark"></i></a></div>
     		<p>{{feed.contentSnippet}}</p>
     		<p class="grey-text text-darken-2">{{feed.publishedDate}}</p>
     	</div>
