@@ -1,16 +1,22 @@
 'use strict';
 
-describe('RSSFeedApp', function() {
+describe('FeedCtrl', function() {
 
   beforeEach(module('RSSFeedApp'));
 
-  describe('controller', function(){
+  var $controller;
 
-    it('should ....', inject(function($controller) {
-      //spec body
-      var Ctrl = $controller('FeedCtrl');
-      expect(Ctrl).toBeDefined();
-    }));
+  beforeEach(inject(function(_$controller_){
+    // The injector unwraps the underscores (_) from around the parameter names when matching
+    $controller = _$controller_;
+  }));
 
+
+  describe('$scope.site', function() {
+    it('confirms the value of current site is null', function() {
+      var $scope = {};
+      var controller = $controller('FeedCtrl', { $scope: $scope });
+      expect($scope.site).toEqual('');
+    });
   });
 });
