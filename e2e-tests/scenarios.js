@@ -17,8 +17,7 @@ describe('my app', function() {
     });
 
     it('should render actual header title', function() {
-      expect(element.all(by.tagName('header')).getText()).
-        toMatch('NEWS');
+      expect(element.all(by.tagName('header')).getText()).toMatch('NEWS');
     });
   });
 
